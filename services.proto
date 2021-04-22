@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = "mydash/grpc";
 
-package widget;
+package grpc;
 
 message Empty {
 
