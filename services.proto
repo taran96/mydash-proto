@@ -13,6 +13,7 @@ message ValueSnippet {
     string valueUnits = 2;
     string subValue = 3;
     string subValueUnits = 4;
+
 }
 
 message Toggle {
@@ -36,6 +37,9 @@ message Widget {
         ValueSnippet valueSnippet = 4;
         Toggle toggle = 5;
     }
+    
+    repeated string colors = 6;
+    string image = 7;
 }
 
 message WidgetsResponse {
@@ -55,6 +59,11 @@ message SwitchAction {
     bool value = 2;
 }
 
+message TextAction {
+    string textId = 1;
+    string value = 2;
+}
+
 message WidgetAction {
     string id = 1;
     oneof action {
@@ -64,8 +73,12 @@ message WidgetAction {
     }
 }
 
+
+
+
 service WidgetService {
     rpc getWidgets(Empty) returns (WidgetsResponse);
     rpc getUpdates(Widget) returns (stream Widget);
     rpc registerWidget(stream Widget) returns (stream WidgetAction);
+    rpc sendWidgetAction(WidgetAction) returns (Empty);
 }
