@@ -13,7 +13,6 @@ message ValueSnippet {
     string valueUnits = 2;
     string subValue = 3;
     string subValueUnits = 4;
-
 }
 
 message Toggle {
@@ -40,6 +39,7 @@ message Widget {
     
     repeated string colors = 6;
     string image = 7;
+    bool requiresAuthCode = 8;
 }
 
 message WidgetsResponse {
