@@ -25,6 +25,7 @@ message ValueSnippet {
 message TextInputWidget {
     string textId = 1;
     TextType text = 2;
+    string placeholder = 3;
 }
 
 message MultiWidget {
