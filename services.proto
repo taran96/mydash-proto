@@ -8,11 +8,28 @@ message Empty {
 
 }
 
+
+enum TextType {
+    NUMBER = 0;
+    TEXT = 1;
+    CODE = 2; // This is like number but it will include tags needed for autofill
+}
+
 message ValueSnippet {
     string value = 1;
     string valueUnits = 2;
     string subValue = 3;
     string subValueUnits = 4;
+}
+
+message TextInputWidget {
+    string textId = 1;
+    TextType text = 2;
+}
+
+message MultiWidget {
+    string name = 1;
+    repeated Widget widgets = 2;
 }
 
 message Toggle {
@@ -32,14 +49,15 @@ message Widget {
     }
 
     Status status = 3;
+    repeated string colors = 4;
+    string image = 5;
+    bool requiresAuthCode = 6;
     oneof data {
-        ValueSnippet valueSnippet = 4;
-        Toggle toggle = 5;
+        ValueSnippet valueSnippet = 7;
+        Toggle toggle = 8;
+        TextInputWidget textInputWidget = 9;
+        MultiWidget multiWidget = 10;
     }
-    
-    repeated string colors = 6;
-    string image = 7;
-    bool requiresAuthCode = 8;
 }
 
 message WidgetsResponse {
@@ -62,11 +80,7 @@ message SwitchAction {
 message TextAction {
     string textId = 1;
     string value = 2;
-    enum TextType {
-        NUMBER = 0;
-        TEXT = 1;
-        CODE = 2; // This is like number but it will include tags needed for autofill
-    }
+    
     TextType type = 3;
 }
 
